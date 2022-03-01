@@ -5,6 +5,8 @@ const searchPhone = () => {
     const searchText = searchField.value;
     //clear data
     searchField.value = '';
+
+    //error handling
     document.getElementById('search-error').style.display = 'none';
     if (searchText == '') {
         document.getElementById('search-error').style.display = 'block';
@@ -23,6 +25,7 @@ const displayError = error => {
     document.getElementById('error-message').style.display = 'block';
 }
 
+//Search result section
 const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
@@ -48,6 +51,7 @@ const displaySearchResult = data => {
     })
 }
 
+// phone details section
 const loadPhoneDetail = phoneId => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
     fetch(url)
@@ -62,29 +66,27 @@ const displayPhoneDetail = phone => {
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
-    <img src="${phone.image}" class="card-img-top w-25 p-3 mx-auto" alt="...">
+    <img src="${phone.image}" class="card-img-top w-25 pt-5  mx-auto" alt="...">
     <div class="card-body ">
-        <h5 class="card-title">${phone.name}</h5>
-        <p class="card-text">${phone.releaseDate}</p>
+        <h5 class="card-title fw-bold">${phone.name}</h5>
+        <p class="card-text">${phone.releaseDate ? phone.releaseDate : "No Release Date Found"}</p>
 
-        <h5>Main Features</h5>
-        <p class="card-text"><span class="fw-bold">Chipset:</span> ${phone.mainFeatures.chipSet}</p>
-        <p class="card-text"><span class="fw-bold">Display Size:</span> ${phone.mainFeatures.displaySize}</p>
+        <h5 class="fw-bold ">Main Features</h5>
+        <p class="card-text"><span class="fw-bold ">Chipset:</span> ${phone.mainFeatures.chipSet}</p>
+        <p class="card-text"><span class="fw-bold ">Display Size:</span> ${phone.mainFeatures.displaySize}</p>
         <p class="card-text"><span class="fw-bold">Sensors:</span> ${phone.mainFeatures.sensors}</p>
         <p class="card-text"><span class="fw-bold">Memory:</span> ${phone.mainFeatures.memory}</p>
-        <p class="card-text"><span class="fw-bold">Storage:</span> ${phone.mainFeatures.storage}</p>
+        <p class="card-text"><span class="fw-bold" >Storage:</span> ${phone.mainFeatures.storage}</p>
         
         ${phone.others ? `
-        <h5>Other Features</h5>
+        <h5 class="fw-bold">Other Features</h5>
             <p class="card-text"><span class="fw-bold">Bluetooth:</span> ${phone.others.Bluetooth}</p>
             
             <p class="card-text"><span class="fw-bold">GPS:</span> ${phone.others.GPS}</p>
             <p class="card-text"><span class="fw-bold">NFC:</span> ${phone.others.NFC}</p>
             <p class="card-text"><span class="fw-bold">Radio:</span> ${phone.others.Radio}</p>
             <p class="card-text"><span class="fw-bold">USB:</span> ${phone.others.USB}</p>
-            <p class="card-text"><span class="fw-bold">WLAN:</span> ${phone.others.WLAN}</p>` : ''}
-        
- 
+            <p class="card-text"><span class="fw-bold pb-5">WLAN:</span> ${phone.others.WLAN}</p>` : ''}
     </div>
     `;
 
