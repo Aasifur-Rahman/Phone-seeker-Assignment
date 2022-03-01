@@ -57,6 +57,7 @@ const loadPhoneDetail = phoneId => {
 
 const displayPhoneDetail = phone => {
     console.log(phone);
+
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
@@ -65,15 +66,28 @@ const displayPhoneDetail = phone => {
     <img src="${phone.image}" class="card-img-top w-25 p-3 mx-auto" alt="...">
     <div class="card-body ">
         <h5 class="card-title">${phone.name}</h5>
-       
+        <p class="card-text">${phone.releaseDate}</p>
+
+        <h5>Main Features</h5>
         <p class="card-text"><span class="fw-bold">Chipset:</span> ${phone.mainFeatures.chipSet}</p>
         <p class="card-text"><span class="fw-bold">Display Size:</span> ${phone.mainFeatures.displaySize}</p>
         <p class="card-text"><span class="fw-bold">Sensors:</span> ${phone.mainFeatures.sensors}</p>
         <p class="card-text"><span class="fw-bold">Memory:</span> ${phone.mainFeatures.memory}</p>
         <p class="card-text"><span class="fw-bold">Storage:</span> ${phone.mainFeatures.storage}</p>
-        <p class="card-text"> ${phone.releaseDate}</p>
         
+        ${phone.others ? `
+        <h5>Other Features</h5>
+            <p class="card-text"><span class="fw-bold">Bluetooth:</span> ${phone.others.Bluetooth}</p>
+            
+            <p class="card-text"><span class="fw-bold">GPS:</span> ${phone.others.GPS}</p>
+            <p class="card-text"><span class="fw-bold">NFC:</span> ${phone.others.NFC}</p>
+            <p class="card-text"><span class="fw-bold">Radio:</span> ${phone.others.Radio}</p>
+            <p class="card-text"><span class="fw-bold">USB:</span> ${phone.others.USB}</p>
+            <p class="card-text"><span class="fw-bold">WLAN:</span> ${phone.others.WLAN}</p>` : ''} 
     </div>
     `;
+
     phoneDetails.appendChild(div);
+
+
 }
