@@ -13,7 +13,7 @@
 
 <body class="container">
     <header>
-        <h1 class="text-center">Phone Seeker</h1>
+        <h1 class="text-center mt-4 mb-5">Phone Seeker</h1>
         <!-- phone search area -->
         <div class="input-group mb-3 w-50 mx-auto">
             <input id="search-field" type="text" class="form-control" placeholder="Search your Phone here"
@@ -24,6 +24,16 @@
     </header>
 
     <main>
+        <div>
+            <p id="error-message" class="text-danger text-center">No result found</p>
+        </div>
+        <div>
+            <p id="search-error" class="text-danger text-center">Please write something to search</p>
+        </div>
+        <!-- single phone details -->
+        <div id="phone-details">
+        </div>
+
         <!-- phone search result -->
         <section>
             <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
