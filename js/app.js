@@ -29,8 +29,8 @@ const displaySearchResult = data => {
     if (data.length == 0) {
         Response("No results found");
     }
-
-    data.forEach(phone => {
+    const firstTwentyPhones = data.slice(0, 20);
+    firstTwentyPhones.forEach(phone => {
         // console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col');
@@ -56,7 +56,6 @@ const loadPhoneDetail = phoneId => {
 }
 
 const displayPhoneDetail = phone => {
-    console.log(phone);
 
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
@@ -83,7 +82,9 @@ const displayPhoneDetail = phone => {
             <p class="card-text"><span class="fw-bold">NFC:</span> ${phone.others.NFC}</p>
             <p class="card-text"><span class="fw-bold">Radio:</span> ${phone.others.Radio}</p>
             <p class="card-text"><span class="fw-bold">USB:</span> ${phone.others.USB}</p>
-            <p class="card-text"><span class="fw-bold">WLAN:</span> ${phone.others.WLAN}</p>` : ''} 
+            <p class="card-text"><span class="fw-bold">WLAN:</span> ${phone.others.WLAN}</p>` : ''}
+        
+ 
     </div>
     `;
 
