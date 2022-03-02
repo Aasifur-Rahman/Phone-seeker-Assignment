@@ -1,12 +1,15 @@
 .btn-style{
     background-color: #4361ee;
     color: white;
+
     border: none;
     border-radius: 4px;
+
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 15px;
+
     box-shadow: 1px 2px 5px rgba(58, 58, 58, 0.596);
 }
 
@@ -17,4 +20,15 @@
 .card:hover{
     border: none;
     box-shadow: 1px 1px 6px rgba(74, 76, 199, 0.479);
+}
+
+.btn-style-two{
+    border: none;
+    
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(0, 102, 255);
+}
+
+.btn-style-two:hover{
+    text-decoration: underline;
 }

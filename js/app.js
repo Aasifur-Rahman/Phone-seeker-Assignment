@@ -47,9 +47,14 @@ const displaySearchResult = data => {
            </div>
          </div>
          `;
+
         searchResult.appendChild(div);
     })
 }
+
+const loadMore = document.getElementById('load-more');
+loadMore.style.display = 'none';
+
 
 // phone details section
 const loadPhoneDetail = phoneId => {
