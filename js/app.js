@@ -1,3 +1,4 @@
+
 document.getElementById('search-error').style.display = 'none';
 document.getElementById('error-message').style.display = 'none';
 const searchPhone = () => {
@@ -25,19 +26,28 @@ const displayError = error => {
     document.getElementById('error-message').style.display = 'block';
 }
 
-//Search result section
+
+//showing more phones
 const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     if (data.length == 0) {
         Response("No results found");
     }
-    const firstTwentyPhones = data.slice(0, 20);
+    let firstTwentyPhones;
+    firstTwentyPhones = data.slice(0, 20);
     firstTwentyPhones.forEach(phone => {
-        // console.log(phone);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `
+        const searchResult = document.getElementById('search-result');
+        searchResult.textContent = '';
+        if (data.length == 0) {
+            Response("No results found");
+        }
+        let firstTwentyPhones = data.slice(0, 20);
+        firstTwentyPhones.forEach(phone => {
+            // console.log(phone);
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
          <div class="card">
              <img  src="${phone.image}" class="card-img-top w-50 mx-auto p-3" alt="...">
                 <div class="card-body">
@@ -48,13 +58,32 @@ const displaySearchResult = data => {
          </div>
          `;
 
-        searchResult.appendChild(div);
+            searchResult.appendChild(div);
+            document.getElementById('load-more').style.display = 'block';
+        })
     })
-}
 
-const loadMore = document.getElementById('load-more');
-loadMore.style.display = 'none';
+    // first twenty phone
+    document.getElementById('load-more').addEventListener('click', function () {
+        firstTwentyPhones.forEach(phone => {
+            firstTwentyPhones = data.slice(0);
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+         <div class="card">
+             <img  src="${phone.image}" class="card-img-top w-50 mx-auto p-3" alt="...">
+                <div class="card-body">
+                <p class="card-text">${phone.brand}</p>
+                 <h5 class="card-title pb-3">${phone.phone_name}</h5>
+                 <button onclick="loadPhoneDetail('${phone.slug}')" class="btn-style">Explore</button>         
+           </div>
+         </div>
+         `;
 
+            searchResult.appendChild(div);
+        });
+    });
+};
 
 // phone details section
 const loadPhoneDetail = phoneId => {
@@ -63,7 +92,6 @@ const loadPhoneDetail = phoneId => {
         .then(res => res.json())
         .then(data => displayPhoneDetail(data.data));
 }
-
 const displayPhoneDetail = phone => {
 
     const phoneDetails = document.getElementById('phone-details');
@@ -94,8 +122,5 @@ const displayPhoneDetail = phone => {
             <p class="card-text"><span class="fw-bold pb-5">WLAN:</span> ${phone.others.WLAN}</p>` : ''}
     </div>
     `;
-
     phoneDetails.appendChild(div);
-
-
 }
